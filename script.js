@@ -14,6 +14,7 @@ $(function() {
       if (e.which == 13) {
         var text = $(this), newContent = text.val(), td = text.parent();
         td.text(newContent);
+        td.removeData("originalContent");
         td.removeClass("cellEditing");
       }
     });
