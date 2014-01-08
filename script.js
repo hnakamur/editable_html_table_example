@@ -6,6 +6,7 @@ $(function() {
     td.data("originalContent", originalContent);
     var el = document.createElement("input"), $el = $(el);
     $el.attr({type: "text", value: originalContent});
+    $el.css("fontSize", td.css("fontSize"));
     td.empty();
     td.append(el);
     $el.focus();
