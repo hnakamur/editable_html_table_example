@@ -4,10 +4,13 @@ $(function() {
 
     td.addClass("cellEditing");
     td.data("originalContent", originalContent);
-    td.html("<input type='text' value='" + originalContent + "' />");
-    td.children().first().focus();
+    var el = document.createElement("input"), $el = $(el);
+    $el.attr({type: "text", value: originalContent});
+    td.empty();
+    td.append(el);
+    $el.focus();
 
-    td.children().first().keypress(function(e) {
+    $el.keypress(function(e) {
       if (e.which == 13) {
         var text = $(this), newContent = text.val(), td = text.parent();
         td.text(newContent);
@@ -15,7 +18,7 @@ $(function() {
       }
     });
 
-    td.children().first().blur(function(){
+    $el.blur(function() {
       var td = $(this).parent();
       td.text(td.data("originalContent"));
       td.removeData("originalContent");
