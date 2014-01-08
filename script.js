@@ -1,9 +1,10 @@
 $(function() {
   $("td").dblclick(function() {
-    var td = $(this), OriginalContent = td.text();
+    var td = $(this), originalContent = td.text();
 
     td.addClass("cellEditing");
-    td.html("<input type='text' value='" + OriginalContent + "' />");
+    td.data("originalContent", originalContent);
+    td.html("<input type='text' value='" + originalContent + "' />");
     td.children().first().focus();
 
     td.children().first().keypress(function(e) {
@@ -16,7 +17,8 @@ $(function() {
 
     td.children().first().blur(function(){
       var td = $(this).parent();
-      td.text(OriginalContent);
+      td.text(td.data("originalContent"));
+      td.removeData("originalContent");
       td.removeClass("cellEditing");
     });
   });
