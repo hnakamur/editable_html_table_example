@@ -1,22 +1,23 @@
 $(function() {
   $("td").dblclick(function() {
-    var OriginalContent = $(this).text();
+    var td = $(this), OriginalContent = td.text();
 
-    $(this).addClass("cellEditing");
-    $(this).html("<input type='text' value='" + OriginalContent + "' />");
-    $(this).children().first().focus();
+    td.addClass("cellEditing");
+    td.html("<input type='text' value='" + OriginalContent + "' />");
+    td.children().first().focus();
 
-    $(this).children().first().keypress(function(e) {
+    td.children().first().keypress(function(e) {
       if (e.which == 13) {
-        var newContent = $(this).val();
-        $(this).parent().text(newContent);
-        $(this).parent().removeClass("cellEditing");
+        var text = $(this), newContent = text.val(), td = text.parent();
+        td.text(newContent);
+        td.removeClass("cellEditing");
       }
     });
 
-    $(this).children().first().blur(function(){
-      $(this).parent().text(OriginalContent);
-      $(this).parent().removeClass("cellEditing");
+    td.children().first().blur(function(){
+      var td = $(this).parent();
+      td.text(OriginalContent);
+      td.removeClass("cellEditing");
     });
   });
 });
