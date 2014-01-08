@@ -19,11 +19,19 @@ $(function() {
       }
     });
 
-    $el.blur(function() {
-      var td = $(this).parent();
+    var resetContent = function(e) {
+      var td = $(e.target).parent();
       td.text(td.data("originalContent"));
       td.removeData("originalContent");
       td.removeClass("cellEditing");
+    };
+
+    $el.keydown(function(e) {
+      if (e.which == 27) {
+        resetContent(e);
+      }
     });
+
+    $el.blur(resetContent);
   });
 });
