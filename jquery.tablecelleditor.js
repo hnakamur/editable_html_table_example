@@ -22,7 +22,6 @@
     var el = document.createElement("input"), $el = $(el);
     $el.attr({type: "text", value: originalContent});
     $el.css("fontSize", td.css("fontSize"));
-    console.log("settings", settings);
     $el.css(settings.inputCSS);
     td.empty();
     td.append(el);
