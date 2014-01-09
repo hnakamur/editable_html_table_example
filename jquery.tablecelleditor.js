@@ -41,7 +41,7 @@
     });
 
     $el.blur(function(e) {
-      $.fn.tablecelleditor.resetEdit(e, settings)
+      $.fn.tablecelleditor.resetEdit(e, settings);
     });
   };
 
